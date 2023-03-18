@@ -25,25 +25,25 @@ use App\Http\Controllers\AdminCategoryController;
 
 Route::get('/', function () {
    return view('home', [
-      'title' => 'Home',
+      'title'  => 'Home',
       'active' => 'home',
    ]);
    });
 
 Route::get('/about', function () {
    return view('about', [
-      'title' => 'About',
-      "name" => "Mbarep Leonardo",
-      "email" => "mbareb86@gmail.com",
-      "image" => "ava.jpg",
+      'title'  => 'About',
+      "name"   => "Mbarep Leonardo",
+      "email"  => "mbareb86@gmail.com",
+      "image"  => "ava.jpg",
       'active' => 'about',
    ]);
    });
 
 Route::get('/categories', function () {
    return view('categories', [
-      'title' => 'Categories',
-      'active' => 'categories',
+      'title'      => 'Categories',
+      'active'     => 'categories',
       'categories' => Category::all()
    ]);
    });
@@ -56,24 +56,6 @@ Route::controller(PostController::class)->group(function () {
    Route::get('/posts/{post:slug}', 'show');
    });
 
-
-
-//Route::get('/categories/{category:slug}', function (Category $category) {
-//   return view('posts', [
-//      'title' => "Category : $category->name",
-//      'posts' => $category->posts->load('author', 'category'),
-//      'active' => $category->name
-//   ]);
-//});
-
-//Route::get('/authors/{author:username}', function (User $author) {
-//   return view('posts', [
-//      'title' => "Post By : $author->name",
-//      'posts' => $author->posts->load('category', 'author'),
-//      //'active' => $author->name
-//      'active' => 'posts'
-//   ]);
-//});
 
 // group route
 Route::controller(LoginController::class)->group(function () {
@@ -90,22 +72,18 @@ Route::controller(LoginController::class)->group(function () {
 //    Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
 //    });
 
-// Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
-// Route::post('/login', [LoginController::class, 'authenticate']);
-// Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::controller(RegisterController::class)->group(function () {
    Route::get('/register', 'index')->middleware('guest');
    Route::post('/register', 'store');
    });
-// Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
-// Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/dashboard', function () {
    return view('dashboard.index');
    })->middleware('auth');
 
 Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
+
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 
 Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');

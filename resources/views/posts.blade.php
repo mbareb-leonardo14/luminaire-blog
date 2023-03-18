@@ -21,30 +21,6 @@
     </div>
 
     @if ($posts->count())
-        {{-- <div class="card mb-3 text-center">
-   <img src="https://source.unsplash.com/750x250?{{ $posts[0]->category->name }}" class="card-img-top" alt="...">
-   <div class="card-body">
-      <h5 class="card-title"><a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none text-dark">{{ $posts[0]->title }}</a></h5>
-
-      <p>
-         <small class="text-muted">
-            By : <i class="bi bi-person-fill"></i><a href="/authors/{{ $posts[0]->author->username }}" class="text-decoration-none"> {{
-               $posts[0]->author->name }}</a> {{ $posts[0]->created_at->diffForHumans() }}
-         </small>
-      </p>
-
-      <p class="card-text">{{ $posts[0]->excerpt }}</p>
-      <p>
-         <a href="/categories/{{ $posts[0]->category->slug }}"><span class="text-decoration-none badge text-bg-secondary">{{
-               $posts[0]->category->name }}</span>
-         </a>
-      </p>
-
-      <a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none btn btn-primary">Read the fucking more...</a>
-
-   </div>
-</div> --}}
-
         <div class="card text-bg-dark my-4 border-0">
 
             @if ($posts[0]->image)
@@ -73,8 +49,6 @@
             </div>
         </div>
 
-
-        {{-- <div class="container"> --}}
         <div class="row">
 
             @foreach ($posts->skip(1) as $post)

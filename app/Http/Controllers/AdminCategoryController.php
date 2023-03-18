@@ -39,7 +39,9 @@ class AdminCategoryController extends Controller
      */
     public function show(Category $category)
         {
-        //
+        return view('dashboard.categories.show', [
+            'categories' => $category
+        ]);
         }
 
     /**
@@ -63,6 +65,9 @@ class AdminCategoryController extends Controller
      */
     public function destroy(Category $category)
         {
-        //
+
+        Category::destroy($category->id);
+
+        return redirect('/dashboard/categories')->with('lolos', 'category has been deleted');
         }
     }
